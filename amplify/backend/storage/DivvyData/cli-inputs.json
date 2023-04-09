@@ -1,0 +1,10 @@
+{
+  "resourceName": "DivvyData",
+  "tableName": "Transactions",
+  "partitionKey": {
+    "fieldName": "transactionId",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

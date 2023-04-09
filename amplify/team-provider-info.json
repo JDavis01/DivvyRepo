@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify2b4b627004384-staging-210227-authRole",
+      "UnauthRoleArn": "arn:aws:iam::498220920990:role/amplify-amplify2b4b627004384-staging-210227-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::498220920990:role/amplify-amplify2b4b627004384-staging-210227-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify2b4b627004384-staging-210227-deployment",
+      "UnauthRoleName": "amplify-amplify2b4b627004384-staging-210227-unauthRole",
+      "StackName": "amplify-amplify2b4b627004384-staging-210227",
+      "StackId": "arn:aws:cloudformation:us-east-1:498220920990:stack/amplify-amplify2b4b627004384-staging-210227/d5bb2780-d719-11ed-b03e-127fdc4eb7a1",
+      "AmplifyAppId": "d3ivmd31fx133v"
+    },
+    "categories": {
+      "api": {
+        "divvyrepo": {}
+      },
+      "storage": {
+        "DivvyData": {}
+      }
+    }
+  }
+}
