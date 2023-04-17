@@ -17,6 +17,9 @@
       },
       "storage": {
         "DivvyData": {}
+      },
+      "auth": {
+        "divvyrepo2df8ab92": {}
       }
     }
   }
