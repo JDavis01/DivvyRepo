@@ -1,8 +1,9 @@
 import './styling/Home.css';
+import { Flex } from '@aws-amplify/ui-react';
 
 const Home = () => {
     return (
-        <div id="homePage">
+        <Flex id="homePage" flex-grow={1}>
             <h2>Welcome to Divvy Up!</h2>
             <p className="intro">This is a charity app that makes it easy and effortless to support the causes
                 you care about. With Divvy Up, you can set up rules like rounding up your purchases to the
@@ -13,7 +14,7 @@ const Home = () => {
                 the hassle of making separate donations to each one. It's all in one place, making it
                 convenient and simple to support the organizations that matter most to you.</p>
             <p className="intro">Join the Divvy Up community today and start making a difference with every purchase.</p>
-        </div>
+        </Flex>
     )
 };
 
