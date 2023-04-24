@@ -13,7 +13,7 @@ type EagerUser = {
   };
   readonly id: string;
   readonly name: string;
-  readonly transactions?: (Transaction | null)[] | null;
+  readonly transactions?: (Donation | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -25,7 +25,7 @@ type LazyUser = {
   };
   readonly id: string;
   readonly name: string;
-  readonly transactions: AsyncCollection<Transaction>;
+  readonly transactions: AsyncCollection<Donation>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -43,7 +43,7 @@ type EagerCharity = {
   };
   readonly id: string;
   readonly title: string;
-  readonly transactions?: (Transaction | null)[] | null;
+  readonly transactions?: (Donation | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -55,7 +55,7 @@ type LazyCharity = {
   };
   readonly id: string;
   readonly title: string;
-  readonly transactions: AsyncCollection<Transaction>;
+  readonly transactions: AsyncCollection<Donation>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -66,38 +66,44 @@ export declare const Charity: (new (init: ModelInit<Charity>) => Charity) & {
   copyOf(source: Charity, mutator: (draft: MutableModel<Charity>) => MutableModel<Charity> | void): Charity;
 }
 
-type EagerTransaction = {
+type EagerDonation = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Transaction, 'id'>;
+    identifier: ManagedIdentifier<Donation, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly user?: User | null;
   readonly charity?: Charity | null;
-  readonly content: string;
+  readonly calculatedDonation: number;
+  readonly inputDonation?: number | null;
+  readonly charityID: string;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly userTransactionsId?: string | null;
   readonly charityTransactionsId?: string | null;
 }
 
-type LazyTransaction = {
+type LazyDonation = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Transaction, 'id'>;
+    identifier: ManagedIdentifier<Donation, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly user: AsyncItem<User | undefined>;
   readonly charity: AsyncItem<Charity | undefined>;
-  readonly content: string;
+  readonly calculatedDonation: number;
+  readonly inputDonation?: number | null;
+  readonly charityID: string;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly userTransactionsId?: string | null;
   readonly charityTransactionsId?: string | null;
 }
 
-export declare type Transaction = LazyLoading extends LazyLoadingDisabled ? EagerTransaction : LazyTransaction
+export declare type Donation = LazyLoading extends LazyLoadingDisabled ? EagerDonation : LazyDonation
 
-export declare const Transaction: (new (init: ModelInit<Transaction>) => Transaction) & {
-  copyOf(source: Transaction, mutator: (draft: MutableModel<Transaction>) => MutableModel<Transaction> | void): Transaction;
+export declare const Donation: (new (init: ModelInit<Donation>) => Donation) & {
+  copyOf(source: Donation, mutator: (draft: MutableModel<Donation>) => MutableModel<Donation> | void): Donation;
 }

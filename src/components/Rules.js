@@ -2,6 +2,34 @@ import { Heading, Flex, Text, TextField, Button, SwitchField } from "@aws-amplif
 import "./styling/Rules.css";
 
 const Rules = () => {
+
+    const [income, setIncome] = useState(0.0);
+    const [expense, setExpense] = useState(0.0);
+    const [debt, setDebt] = useState(0.0);
+    const [calcDonation, setCalcDonation] = useState(0.0);
+    const [inputDonation, setInputDonation] = useState(0.0);
+
+    const handleCalcSubmit = (e) => {
+        setIncome(e.document.getElementById("monthlyIncome"));
+        setExpense(e.document.getElementById("monthlyExpense"));
+        setDebt(e.document.getElementById("totalDebt"));
+
+        if (income < expense || debt > income * 12) {
+            setCalcDonation(10);
+        }
+        else if (income > expense && debt > income * 12) {
+            setCalcDonation(20);
+        }
+        else if (income - expense > 1000 && income - expense < 2000) {
+            setCalcDonation(50);
+        }
+        else {
+            setCalcDonation(100);
+        }
+    }
+
+
+
     return (
         <Flex id="container">
             <Heading level={5}>How much would you like to donate?</Heading>
@@ -24,10 +52,10 @@ const Rules = () => {
             </Text>
 
             <Flex id="form">
-                <TextField type="number" label="Monthly Income" min={0}></TextField>
-                <TextField type="number" label="Monthly Expenses" min={0}></TextField>
-                <TextField type="number" label="Total Debt" min={0}></TextField>
-                <Button>Submit</Button>
+                <TextField id="monthlyIncome" type="number" label="Monthly Income" min={0}></TextField>
+                <TextField id="monthlyExpense" type="number" label="Monthly Expenses" min={0}></TextField>
+                <TextField id="totalDebt" type="number" label="Total Debt" min={0}></TextField>
+                <Button onClick={handleCalcSubmit(e)}>Submit</Button>
             </Flex>
             <SwitchField label="Opt out of form"></SwitchField>
             <TextField type="number" label="Enter the amount you would like to donate." min={0}></TextField>

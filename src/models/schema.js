@@ -21,7 +21,7 @@ export const schema = {
                     "name": "transactions",
                     "isArray": true,
                     "type": {
-                        "model": "Transaction"
+                        "model": "Donation"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -29,7 +29,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "userTransactionsId"
+                            "userID"
                         ]
                     }
                 },
@@ -56,6 +56,22 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -80,7 +96,7 @@ export const schema = {
                     "name": "transactions",
                     "isArray": true,
                     "type": {
-                        "model": "Transaction"
+                        "model": "Donation"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -88,7 +104,7 @@ export const schema = {
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": [
-                            "charityTransactionsId"
+                            "charityID"
                         ]
                     }
                 },
@@ -115,11 +131,27 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
-        "Transaction": {
-            "name": "Transaction",
+        "Donation": {
+            "name": "Donation",
             "fields": {
                 "id": {
                     "name": "id",
@@ -158,10 +190,31 @@ export const schema = {
                         ]
                     }
                 },
-                "content": {
-                    "name": "content",
+                "calculatedDonation": {
+                    "name": "calculatedDonation",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "inputDonation": {
+                    "name": "inputDonation",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "charityID": {
+                    "name": "charityID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -197,11 +250,45 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Transactions",
+            "pluralName": "Donations",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byCharity",
+                        "fields": [
+                            "charityID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUser",
+                        "fields": [
+                            "userID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         }
@@ -209,5 +296,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.0",
-    "version": "922f0e8d9ef46c5920211dc78331ba85"
+    "version": "f1eb1b8d514a06cda08210055a2db157"
 };
